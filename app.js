@@ -158,19 +158,23 @@ const albumData = [
 ];
 
 const fallbackAlbumArt = {
-  'pablo-honey': 'assets/album-pablo-honey.svg',
-  'the-bends': 'assets/album-the-bends.svg',
-  'ok-computer': 'assets/album-ok-computer.svg',
-  'kid-a': 'assets/album-kid-a.svg',
-  'amnesiac': 'assets/album-amnesiac.svg',
-  'hail-to-the-thief': 'assets/album-hail-to-the-thief.svg',
-  'in-rainbows': 'assets/album-in-rainbows.svg',
-  'the-king-of-limbs': 'assets/album-the-king-of-limbs.svg',
-  'a-moon-shaped-pool': 'assets/album-a-moon-shaped-pool.svg'
+  'pablo-honey': 'assets/album-pablo-honey.jpg',
+  'the-bends': 'assets/album-the-bends.jpg',
+  'ok-computer': 'assets/album-ok-computer.jpg',
+  'kid-a': 'assets/album-kid-a.jpg',
+  'amnesiac': 'assets/album-amnesiac.jpg',
+  'hail-to-the-thief': 'assets/album-hail-to-the-thief.jpg',
+  'in-rainbows': 'assets/album-in-rainbows.jpg',
+  'the-king-of-limbs': 'assets/album-the-king-of-limbs.jpg',
+  'a-moon-shaped-pool': 'assets/album-a-moon-shaped-pool.jpg'
 };
 
 function fallbackArtwork(slug) {
   return fallbackAlbumArt[slug] || '';
+}
+
+function backupSvgArtwork(slug) {
+  return `assets/album-${slug}.svg`;
 }
 
 const state = {
@@ -515,12 +519,15 @@ function setAlbumArtwork(slug, artworkUrl) {
   });
 
   if (!wrap || !resolvedArtwork) return;
-  wrap.classList.toggle('fallback-art', resolvedArtwork.includes('.svg'));
+  wrap.classList.toggle('fallback-art', resolvedArtwork.includes('assets/album-'));
   const img = qs('img', wrap);
   img.addEventListener('load', () => wrap.classList.add('loaded'), { once: true });
   img.addEventListener('error', () => {
+    const backup = backupSvgArtwork(slug);
     if (fallback && !img.src.endsWith(fallback)) {
       img.src = fallback;
+    } else if (backup && !img.src.endsWith(backup)) {
+      img.src = backup;
     } else {
       wrap.classList.remove('loaded');
     }
@@ -533,11 +540,14 @@ function setSpotlightArtwork(album) {
   const artworkUrl = state.artworkCache.get(album.slug) || fallback;
   const wrap = albumSpotlight.querySelector('.spotlight-art-wrap');
   spotlightArt.alt = artworkUrl ? `Artwork for ${album.title}` : '';
-  wrap.classList.toggle('fallback-art', Boolean(artworkUrl && artworkUrl.includes('.svg')));
+  wrap.classList.toggle('fallback-art', Boolean(artworkUrl && artworkUrl.includes('assets/album-')));
   spotlightArt.addEventListener('load', () => wrap.classList.add('loaded'), { once: true });
   spotlightArt.addEventListener('error', () => {
+    const backup = backupSvgArtwork(album.slug);
     if (fallback && !spotlightArt.src.endsWith(fallback)) {
       spotlightArt.src = fallback;
+    } else if (backup && !spotlightArt.src.endsWith(backup)) {
+      spotlightArt.src = backup;
     } else {
       wrap.classList.remove('loaded');
       spotlightFallback.hidden = false;
@@ -837,6 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   resizeCanvas();
   drawSignal();
-  hydrateAlbumArtworks();
+  // Album archive images are local PNGs for reliable iPhone/Safari loading.
+  // The API is still used for listening previews only.
   fetchTracks();
 });
