@@ -1402,3 +1402,82 @@ h2 {
   .fan-covers-copy { min-height: auto; }
   .qr-card { min-height: auto; }
 }
+
+/* --- Mobile polish / iPhone Safari fixes --- */
+.album-art.fallback-art img,
+.spotlight-art-wrap.fallback-art img {
+  object-fit: contain;
+  padding: 12px;
+  background: radial-gradient(circle at 30% 20%, rgba(244,241,232,.10), transparent 34%), rgba(5,6,10,.36);
+}
+
+@media (max-width: 620px) {
+  .hero {
+    width: min(calc(100% - 28px), var(--max));
+    min-height: auto;
+    padding: 108px 0 58px;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 15.8vw, 4.9rem);
+    line-height: .86;
+    letter-spacing: -0.075em;
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+
+  .hero-copy {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .hero-badge-row span {
+    margin-top: 0;
+    font-size: .72rem;
+    padding: 8px 10px;
+  }
+
+  .album-card {
+    min-height: auto;
+    border-radius: 26px;
+  }
+
+  .album-art {
+    margin: 12px 12px 0;
+    border-radius: 22px;
+  }
+
+  .album-content {
+    padding: 20px 20px 22px;
+  }
+
+  .album-mini-facts {
+    gap: 10px;
+  }
+
+  .album-mini-facts span {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .album-card p {
+    font-size: .98rem;
+  }
+
+  .album-actions button {
+    min-height: 54px;
+  }
+
+  .track-grid {
+    gap: 14px;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .album-art img,
+  .track-card img,
+  .wall-tile img {
+    transform: translateZ(0);
+  }
+}

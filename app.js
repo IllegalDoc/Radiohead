@@ -335,6 +335,65 @@ function safeArtwork(url, size = 900) {
   return url.replace(/100x100bb\.(jpg|png|webp)/, `${size}x${size}bb.$1`);
 }
 
+function buildItunesUrl(params) {
+  const searchParams = params instanceof URLSearchParams ? new URLSearchParams(params) : new URLSearchParams(params || {});
+  return `${API_BASE}?${searchParams.toString()}`;
+}
+
+function itunesJsonp(params, timeoutMs = 9000) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `itunesCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const searchParams = params instanceof URLSearchParams ? new URLSearchParams(params) : new URLSearchParams(params || {});
+    searchParams.set('callback', callbackName);
+
+    const script = document.createElement('script');
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error('iTunes JSONP timeout'));
+    }, timeoutMs);
+
+    function cleanup() {
+      window.clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+    }
+
+    window[callbackName] = (data) => {
+      cleanup();
+      resolve(data);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('iTunes JSONP failed'));
+    };
+
+    script.src = `${API_BASE}?${searchParams.toString()}`;
+    document.head.appendChild(script);
+  });
+}
+
+async function itunesSearch(params) {
+  const controller = 'AbortController' in window ? new AbortController() : null;
+  const timeout = controller ? window.setTimeout(() => controller.abort(), 7500) : null;
+
+  try {
+    const response = await fetch(buildItunesUrl(params), {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-store',
+      signal: controller?.signal
+    });
+    if (!response.ok) throw new Error(`API returned ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.info('Fetch blocked or unavailable; trying iTunes JSONP fallback:', error.message);
+    return await itunesJsonp(params);
+  } finally {
+    if (timeout) window.clearTimeout(timeout);
+  }
+}
+
 function renderAlbums() {
   albumGrid.innerHTML = albumData.map((album, index) => `
     <article class="album-card${index === 0 ? ' active' : ''}" data-album-card="${album.slug}" data-reveal>
@@ -456,6 +515,7 @@ function setAlbumArtwork(slug, artworkUrl) {
   });
 
   if (!wrap || !resolvedArtwork) return;
+  wrap.classList.toggle('fallback-art', resolvedArtwork.includes('.svg'));
   const img = qs('img', wrap);
   img.addEventListener('load', () => wrap.classList.add('loaded'), { once: true });
   img.addEventListener('error', () => {
@@ -473,6 +533,7 @@ function setSpotlightArtwork(album) {
   const artworkUrl = state.artworkCache.get(album.slug) || fallback;
   const wrap = albumSpotlight.querySelector('.spotlight-art-wrap');
   spotlightArt.alt = artworkUrl ? `Artwork for ${album.title}` : '';
+  wrap.classList.toggle('fallback-art', Boolean(artworkUrl && artworkUrl.includes('.svg')));
   spotlightArt.addEventListener('load', () => wrap.classList.add('loaded'), { once: true });
   spotlightArt.addEventListener('error', () => {
     if (fallback && !spotlightArt.src.endsWith(fallback)) {
@@ -499,9 +560,7 @@ async function fetchAlbumArtwork(album) {
   });
 
   try {
-    const response = await fetch(`${API_BASE}?${params}`);
-    if (!response.ok) throw new Error(`API returned ${response.status}`);
-    const data = await response.json();
+    const data = await itunesSearch(params);
     const target = normalize(album.title);
     const match = (data.results || [])
       .filter((item) => item.artistName && item.artistName.toLowerCase() === 'radiohead')
@@ -551,9 +610,7 @@ async function fetchTracks(term = DEFAULT_QUERY) {
   });
 
   try {
-    const response = await fetch(`${API_BASE}?${params}`);
-    if (!response.ok) throw new Error(`API returned ${response.status}`);
-    const data = await response.json();
+    const data = await itunesSearch(params);
     const radioheadTracks = (data.results || [])
       .filter((track) => track.artistName && track.artistName.toLowerCase() === 'radiohead')
       .filter((track) => Boolean(track.previewUrl))
@@ -573,7 +630,7 @@ async function fetchTracks(term = DEFAULT_QUERY) {
     }
   } catch (error) {
     console.error(error);
-    trackGrid.innerHTML = '<div class="error">The preview API could not be reached. Open this page with an internet connection and try again.</div>';
+    trackGrid.innerHTML = '<div class="error">The preview API could not be reached. On iPhone/Safari, reload once or disable strict content blockers for this page, then try again.</div>';
   }
 }
 
