@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everything In Its Right Place — Radiohead Fan Experience</title>
+    <meta
+      name="description"
+      content="A premium animated Radiohead fan website with a full album discography and short music previews powered by the iTunes Search API."
+    />
+    <link rel="preconnect" href="https://itunes.apple.com" />
+    <link rel="preconnect" href="https://is1-ssl.mzstatic.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="intro-active">
+    <div class="noise" aria-hidden="true"></div>
+    <div class="orb orb-a" aria-hidden="true"></div>
+    <div class="orb orb-b" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <div class="intro-loader" id="introLoader" aria-live="polite">
+      <div class="intro-noise" aria-hidden="true"></div>
+      <div class="intro-ring" aria-hidden="true"></div>
+      <div class="intro-core">
+        <img
+          src="assets/radiohead-logo.png"
+          alt="Radiohead logo"
+          class="intro-logo"
+        />
+        <p class="intro-kicker">initialising archive</p>
+        <div class="intro-wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
+          ><i></i><i></i>
+        </div>
+        <div class="intro-progress-bar" aria-label="Intro audio progress">
+          <span id="introProgress"></span>
+        </div>
+        <p class="intro-status" id="introStatus">loading sound fragment…</p>
+        <button class="intro-enter" id="introEnter" type="button">
+          Enter the archive
+        </button>
+        <audio
+          id="introAudio"
+          src="assets/intro-pyramid-song.mp3"
+          preload="auto"
+        ></audio>
+      </div>
+    </div>
+
+    <header class="site-header" data-reveal>
+      <a href="#top" class="brand" aria-label="Radiohead fan site home">
+        <span class="brand-photo brand-logo" aria-hidden="true"
+          ><img src="assets/radiohead-logo.png" alt=""
+        /></span>
+        <span class="brand-text">Radiohead Archive</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#sound">Sound</a>
+        <a href="#eras">Albums</a>
+        <a href="#signals">Signals</a>
+        <a href="#listen">Listen</a>
+        <a href="#fan-covers">Covers</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-content" data-reveal>
+          <p class="eyebrow">Unofficial fan experience</p>
+          <h1 id="hero-title">
+            Enter the<br /><span>Radiohead</span><br />signal.
+          </h1>
+          <p class="hero-copy">
+            A premium interactive archive for moving through the band’s albums,
+            visual worlds, and official 30-second preview fragments — built like
+            a dream transmission from Oxford to the end of the internet.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#listen">Start listening</a>
+            <a class="btn ghost" href="#eras">Open the archive</a>
+          </div>
+          <div class="hero-badge-row" aria-label="Website highlights">
+            <span>9 studio albums</span>
+            <span>live preview API</span>
+            <span>animated signal field</span>
+          </div>
+        </div>
+        <aside
+          class="hero-card tilt"
+          data-reveal
+          aria-label="Live visualizer preview"
+        >
+          <div class="vinyl-wrap">
+            <div class="vinyl"><span></span></div>
+            <div class="tone-arm"></div>
+          </div>
+          <div class="equalizer" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="hero-mini-gallery" aria-hidden="true">
+            <img
+              src="assets/album-ok-computer.svg"
+              data-palette-art="ok-computer"
+              alt=""
+            />
+            <img src="assets/album-kid-a.svg" data-palette-art="kid-a" alt="" />
+            <img
+              src="assets/album-in-rainbows.svg"
+              data-palette-art="in-rainbows"
+              alt=""
+            />
+          </div>
+          <p>
+            Hover, scroll, listen. The archive behaves like a signal passing
+            through a broken radio: glowing, unstable, alive.
+          </p>
+        </aside>
+        <div class="scroll-hint" aria-hidden="true">Scroll</div>
+      </section>
+
+      <section class="section sound" id="sound" aria-labelledby="sound-title">
+        <div class="section-heading palette-heading" data-reveal>
+          <p class="eyebrow">The palette</p>
+          <h2 id="sound-title">
+            A photographic moodboard for the Radiohead atmosphere.
+          </h2>
+          <p class="section-subcopy">
+            This section now uses your curated images only — live photography,
+            portraits, and stage atmosphere instead of album covers. The layout
+            is cleaner, lighter, and built to feel like a premium visual board
+            rather than a buggy collage.
+          </p>
+        </div>
+
+        <div class="palette-showcase" data-reveal>
+          <article
+            class="palette-feature tilt"
+            aria-label="Large Radiohead live performance image"
+          >
+            <img
+              src="assets/palette-live-stage.jpg"
+              alt="Radiohead performing live under dramatic green and blue stage lights"
+              loading="lazy"
+            />
+            <div class="palette-feature-copy">
+              <span>01 / live transmission</span>
+              <h3>Scale, light, tension, silence.</h3>
+              <p>
+                A cinematic anchor image: Radiohead on stage, framed like a
+                cathedral of sound with floating green signals and cold blue
+                beams.
+              </p>
+            </div>
+          </article>
+
+          <div
+            class="palette-stack"
+            aria-label="Curated Radiohead photography moodboard"
+          >
+            <article class="palette-picture">
+              <img
+                src="assets/palette-band-close.jpg"
+                alt="Close-up group portrait of Radiohead"
+                loading="lazy"
+              />
+              <div>
+                <span>group portrait</span><strong>Studio stare</strong>
+              </div>
+            </article>
+            <article class="palette-picture">
+              <img
+                src="assets/palette-early-bw.jpg"
+                alt="Black-and-white early photo of Radiohead sitting outdoors"
+                loading="lazy"
+              />
+              <div><span>early years</span><strong>Rough edges</strong></div>
+            </article>
+            <article class="palette-picture">
+              <img
+                src="assets/palette-thom-blue.jpg"
+                alt="Thom Yorke singing and playing guitar under blue lights"
+                loading="lazy"
+              />
+              <div><span>electric blue</span><strong>Feral energy</strong></div>
+            </article>
+            <article class="palette-picture">
+              <img
+                src="assets/palette-thom-close.jpg"
+                alt="Close-up of Thom Yorke performing live with a guitar"
+                loading="lazy"
+              />
+              <div><span>solo focus</span><strong>Suspended voice</strong></div>
+            </article>
+            <article class="palette-picture">
+              <img
+                src="assets/palette-band-sepia.jpg"
+                alt="Sepia-toned portrait of the members of Radiohead"
+                loading="lazy"
+              />
+              <div><span>afterglow</span><strong>Sepia hush</strong></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="palette-mood-grid" data-reveal>
+          <article class="palette-note">
+            <span>faces</span>
+            <h3>Human distance</h3>
+            <p>
+              Calm expressions, uneasy framing, and that detached stillness that
+              makes the band feel intimate and unreachable at the same time.
+            </p>
+          </article>
+          <article class="palette-note">
+            <span>performance</span>
+            <h3>Voltage and release</h3>
+            <p>
+              Stage shots introduce movement, beams, sweat, and tension — the
+              physical counterpoint to the colder electronic side of the
+              catalogue.
+            </p>
+          </article>
+          <article class="palette-note">
+            <span>tone</span>
+            <h3>Memory, static, afterimage</h3>
+            <p>
+              Black-and-white, sepia, green light, and blue glow keep the
+              palette nostalgic but unstable, like a signal fading in and out.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="Radiohead album marquee">
+        <div class="marquee-track">
+          <span>Pablo Honey</span><span>The Bends</span><span>OK Computer</span
+          ><span>Kid A</span><span>Amnesiac</span><span>Hail to the Thief</span
+          ><span>In Rainbows</span><span>The King of Limbs</span
+          ><span>A Moon Shaped Pool</span> <span>Pablo Honey</span
+          ><span>The Bends</span><span>OK Computer</span><span>Kid A</span
+          ><span>Amnesiac</span><span>Hail to the Thief</span
+          ><span>In Rainbows</span><span>The King of Limbs</span
+          ><span>A Moon Shaped Pool</span>
+        </div>
+      </section>
+
+      <section class="section eras" id="eras" aria-labelledby="eras-title">
+        <div class="section-heading discography-heading" data-reveal>
+          <div>
+            <p class="eyebrow">Album biography archive</p>
+            <h2 id="eras-title">
+              Every studio album, expanded into a visual archive.
+            </h2>
+          </div>
+          <p class="section-subcopy">
+            Each album now has a longer biography, release context, production
+            notes, essential entry tracks, visual mood, and preview shortcuts.
+            Artwork is requested live from Apple/iTunes when the page opens, so
+            the project stays lightweight.
+          </p>
+        </div>
+
+        <div class="archive-intro" data-reveal>
+          <figure class="band-photo-card tilt">
+            <img
+              src="assets/radiohead-band-main.jpg"
+              alt="Radiohead group portrait"
+              loading="lazy"
+            />
+          </figure>
+          <div class="archive-copy-card">
+            <p class="eyebrow">From Oxford noise to orchestral ghosts</p>
+            <h3>Nine albums, nine mutations.</h3>
+            <p>
+              Radiohead’s studio catalogue moves like a nervous system: early
+              guitar pressure, widescreen paranoia, electronic collapse,
+              political static, rhythmic warmth, loop-based minimalism, and
+              finally a suspended orchestral afterimage.
+            </p>
+            <div class="archive-stats">
+              <span><strong>9</strong> studio albums</span>
+              <span><strong>1993–2016</strong> main arc</span>
+              <span><strong>30s</strong> preview clips</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="album-grid" id="albumGrid" aria-live="polite"></div>
+
+        <div
+          class="archive-wall"
+          id="archiveWall"
+          data-reveal
+          aria-label="Visual wall of Radiohead studio albums"
+        ></div>
+
+        <article
+          class="album-spotlight tilt"
+          id="albumSpotlight"
+          data-reveal
+          aria-labelledby="spotlightTitle"
+        >
+          <div class="spotlight-art-wrap">
+            <img id="spotlightArt" src="" alt="" />
+            <div
+              class="spotlight-fallback"
+              id="spotlightFallback"
+              aria-hidden="true"
+            ></div>
+            <div class="image-orbit" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="spotlight-copy">
+            <p class="eyebrow" id="spotlightKicker">1993 / Pablo Honey</p>
+            <h3 id="spotlightTitle">The starting signal.</h3>
+            <p id="spotlightText">
+              Radiohead’s debut captures the band before the later reinventions:
+              loud guitars, direct songwriting, and the first signs of the
+              tension that would define their catalogue.
+            </p>
+            <div class="fact-grid" id="spotlightFacts"></div>
+            <div class="tag-row" id="spotlightTags"></div>
+            <button class="btn primary" id="spotlightPreviewBtn" type="button">
+              Load previews from this album
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section
+        class="section signals"
+        id="signals"
+        aria-labelledby="signals-title"
+      >
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">Interactive layer</p>
+          <h2 id="signals-title">Move through the noise.</h2>
+        </div>
+        <div class="signal-board" data-reveal>
+          <canvas
+            id="signalCanvas"
+            width="1200"
+            height="500"
+            aria-label="Animated signal lines"
+          ></canvas>
+          <div class="signal-copy">
+            <h3>Generative signal field</h3>
+            <p>
+              The canvas redraws with drifting waves and micro-glitches. When a
+              preview plays, it tries to react to the audio energy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section listen"
+        id="listen"
+        aria-labelledby="listen-title"
+      >
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">30-second previews</p>
+          <h2 id="listen-title">Listen to official store snippets.</h2>
+          <p class="section-subcopy">
+            Previews are loaded live from Apple’s iTunes Search API. If the API
+            is unavailable, the site shows a graceful fallback message.
+          </p>
+        </div>
+
+        <div class="player-shell" data-reveal>
+          <div class="now-playing">
+            <img id="nowArt" src="" alt="" />
+            <div>
+              <p class="eyebrow">Now playing</p>
+              <h3 id="nowTitle">Choose a track</h3>
+              <p id="nowAlbum">Radiohead preview will appear here.</p>
+            </div>
+          </div>
+          <div class="player-controls">
+            <button
+              class="round-btn"
+              id="prevBtn"
+              aria-label="Previous preview"
+            >
+              ‹
+            </button>
+            <button
+              class="play-btn"
+              id="playBtn"
+              aria-label="Play or pause preview"
+            >
+              Play
+            </button>
+            <button class="round-btn" id="nextBtn" aria-label="Next preview">
+              ›
+            </button>
+          </div>
+          <div class="progress-wrap" aria-label="Playback progress">
+            <div class="progress" id="progress"></div>
+          </div>
+          <audio id="audio" preload="none" crossorigin="anonymous"></audio>
+        </div>
+
+        <div class="track-toolbar" data-reveal>
+          <label for="searchInput">Search Radiohead tracks</label>
+          <div class="search-row">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Try: Weird Fishes, No Surprises, Reckoner..."
+              autocomplete="off"
+            />
+            <button class="btn primary" id="searchBtn">Search</button>
+          </div>
+        </div>
+
+        <div class="track-grid" id="trackGrid" aria-live="polite"></div>
+        <p class="api-note" data-reveal>
+          Music previews and artwork are requested from Apple/iTunes at runtime.
+          This fan site does not host or redistribute full songs.
+        </p>
+      </section>
+
+      <section
+        class="section fan-covers"
+        id="fan-covers"
+        aria-labelledby="fan-covers-title"
+      >
+        <div class="fan-covers-shell" data-reveal>
+          <div class="fan-covers-copy">
+            <p class="eyebrow">Fan corner</p>
+            <h2 id="fan-covers-title">A Radiohead fan behind the archive.</h2>
+            <p>
+              I’m a big Radiohead fan, and I also post music covers on
+              Instagram. Scan the QR code or open my profile to hear more.
+            </p>
+            <div class="fan-actions">
+              <a
+                class="btn primary"
+                href="https://www.instagram.com/dragonlord_duelist/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Open Instagram</a
+              >
+              <span class="fan-handle">@dragonlord_duelist</span>
+            </div>
+          </div>
+          <a
+            class="qr-card tilt"
+            href="https://www.instagram.com/dragonlord_duelist/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open @dragonlord_duelist on Instagram"
+          >
+            <span class="qr-kicker">scan / follow</span>
+            <img
+              src="assets/dragonlord-duelist-qr.png"
+              alt="Instagram QR code for @dragonlord_duelist"
+              loading="lazy"
+            />
+            <span class="qr-caption">Radiohead Acoustic Covers </span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" data-reveal>
+      <p>
+        <strong>Radiohead Archive</strong> — unofficial fan website concept.
+      </p>
+      <p>
+        Built as a static HTML/CSS/JS project. Audio previews and album artwork:
+        iTunes Search API.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

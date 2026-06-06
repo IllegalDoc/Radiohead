@@ -1,0 +1,31 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Original fan-made artwork poster for THE
+BENDS">
+  <defs>
+    <radialGradient id="g1" cx="22%" cy="18%" r="74%"><stop offset="0" stop-color="#7cc7ff" stop-opacity="0.95"/><stop offset="0.43" stop-color="#293b6b" stop-opacity="0.6"/><stop offset="1" stop-color="#050509"/></radialGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f5f7ff" stop-opacity="0.96"/><stop offset="1" stop-color="#050509" stop-opacity="0.82"/></linearGradient>
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.26"/></feComponentTransfer></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .title{font-family:Arial Black, Impact, sans-serif;font-size:106px;font-weight:900;letter-spacing:-7px;fill:#fff;filter:url(#glow)}
+      .year{font-family:Arial, sans-serif;font-size:34px;font-weight:900;letter-spacing:8px;fill:#fff;opacity:.72}
+      .sub{font-family:Arial, sans-serif;font-size:30px;font-weight:800;letter-spacing:4px;fill:#fff;opacity:.55;text-transform:uppercase}
+      .tiny{font-family:Arial, sans-serif;font-size:22px;font-weight:700;letter-spacing:5px;fill:#fff;opacity:.35}
+    </style>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#g2)"/>
+  <rect width="1200" height="1200" fill="url(#g1)" opacity="0.92"/>
+  <g opacity="0.34">
+    <path d="M-80 270 C160 120 270 480 475 315 S850 130 1310 340" fill="none" stroke="#fff" stroke-width="3"/>
+    <path d="M-90 820 C240 625 365 985 600 755 S920 570 1320 800" fill="none" stroke="#fff" stroke-width="3"/>
+    <path d="M180 -40 L1120 1260" stroke="#fff" stroke-width="2" opacity=".34"/>
+    <path d="M-40 1020 L1235 190" stroke="#fff" stroke-width="2" opacity=".24"/>
+  </g>
+  <g filter="url(#noise)"><rect width="1200" height="1200" fill="#fff"/></g>
+  <rect x="46" y="46" width="1108" height="1108" rx="56" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="4"/>
+  <text x="54" y="122" class="year">RADIOHEAD / 1995</text>
+  <text x="54" y="360" class="title">THE
+BENDS</text>
+
+  <text x="58" y="1015" class="sub">pressure chamber</text>
+  <text x="58" y="1084" class="tiny">UNOFFICIAL FAN ARCHIVE ARTWORK</text>
+</svg>

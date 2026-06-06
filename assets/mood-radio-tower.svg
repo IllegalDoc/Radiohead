@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#101827"/><stop offset=".5" stop-color="#071018"/><stop offset="1" stop-color="#030507"/></linearGradient>
+    <radialGradient id="moon" cx="50%" cy="50%" r="50%"><stop stop-color="#f4f1e8"/><stop offset=".7" stop-color="#9fb0be"/><stop offset="1" stop-color="#9fb0be" stop-opacity="0"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="4"/><feComponentTransfer><feFuncA type="table" tableValues="0 .16"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="900" height="1100" fill="url(#sky)"/>
+  <circle cx="690" cy="220" r="126" fill="url(#moon)" opacity=".82"/>
+  <g stroke="#92f1ff" stroke-width="3" opacity=".48" filter="url(#glow)">
+    <path d="M450 140 L238 1000 L662 1000 Z" fill="none"/>
+    <path d="M450 140 L450 1000"/><path d="M325 450 L575 450"/><path d="M284 620 L616 620"/><path d="M245 790 L655 790"/>
+    <path d="M380 310 L520 450 L330 620 L570 790 L420 1000" fill="none"/>
+    <path d="M520 310 L380 450 L570 620 L330 790 L480 1000" fill="none"/>
+  </g>
+  <g stroke="#ff6978" stroke-width="2" opacity=".36" filter="url(#glow)">
+    <path d="M450 178 C238 250 110 438 80 660" fill="none"/>
+    <path d="M450 178 C656 260 786 450 828 682" fill="none"/>
+    <path d="M450 258 C300 330 205 465 178 620" fill="none"/>
+    <path d="M450 258 C598 332 692 466 724 620" fill="none"/>
+  </g>
+  <g fill="#c8ff52" opacity=".65" filter="url(#glow)"><circle cx="450" cy="140" r="7"/><circle cx="325" cy="450" r="4"/><circle cx="575" cy="450" r="4"/></g>
+  <rect y="830" width="900" height="270" fill="#020204" opacity=".82"/>
+  <rect width="900" height="1100" filter="url(#grain)"/>
+</svg>
