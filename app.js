@@ -174,7 +174,7 @@ function fallbackArtwork(slug) {
 }
 
 function backupSvgArtwork(slug) {
-  return `assets/album-${slug}.svg`;
+  return fallbackAlbumArt[slug] || '';
 }
 
 const state = {
@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   resizeCanvas();
   drawSignal();
-  // Album archive images are local PNGs for reliable iPhone/Safari loading.
+  // Album archive images are local JPGs for reliable iPhone/Safari loading.
   // The API is still used for listening previews only.
   fetchTracks();
 });

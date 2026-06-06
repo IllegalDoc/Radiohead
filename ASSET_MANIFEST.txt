@@ -1,0 +1,30 @@
+ASSET MANIFEST — VERIFIED CLEAN
+
+This package intentionally contains 19 asset files only.
+There are NO duplicate album formats: no album PNG files and no album SVG files.
+
+Album images — 9 JPG files, one per album:
+- album-pablo-honey.jpg
+- album-the-bends.jpg
+- album-ok-computer.jpg
+- album-kid-a.jpg
+- album-amnesiac.jpg
+- album-hail-to-the-thief.jpg
+- album-in-rainbows.jpg
+- album-the-king-of-limbs.jpg
+- album-a-moon-shaped-pool.jpg
+
+Custom/user/visual assets:
+- radiohead-logo.png
+- radiohead-band-main.jpg
+- palette-band-close.jpg
+- palette-early-bw.jpg
+- palette-thom-blue.jpg
+- palette-thom-close.jpg
+- palette-live-stage.jpg
+- palette-band-sepia.jpg
+- dragonlord-duelist-qr.png
+- intro-pyramid-song.mp3
+
+Why 19 assets?
+The site needs 9 local album images for iPhone Safari reliability, 6 palette photos selected by the user, 1 main archive band photo, 1 logo, 1 Instagram QR code, and 1 intro audio file.
